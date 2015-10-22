@@ -66,6 +66,7 @@
 	if (isLocalStorageNameSupported()) {
 		storage = win[localStorageName]
 		store.set = function(key, val) {
+			if (store.disabled) { return false }
 			if (val === undefined) { return store.remove(key) }
 			storage.setItem(key, store.serialize(val))
 			return val
